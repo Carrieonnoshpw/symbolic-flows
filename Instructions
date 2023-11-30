@@ -1,0 +1,2 @@
+Data: the symbolicflows file contains all symbolic flows in the study area. the fields in symbolicflows are ODflow_len, ODflow_azi, ODflow_int correspond to the fields of length, azimuth angle, and intensity of symbolic flow, respectively.
+Code: input the data in the format of csv, use python 3.9 to run EntropyandEccentricity.py, then output the symbolic force(entropy) and eccentricty of each city.
