@@ -5,7 +5,7 @@ import math
 from decimal import *
  
 
-#Construct a standard dataframe, delete the "OID" column, merge rows with the same bin, and output in the order of bin, 'COUNT_ODflow', 'trueintensity'
+#Construct a standard dataframe, delete the "OID" column, merge rows with the same bin, and output in the order of bin, 'COUNT_ODflow', 'ODflow_int'
 def shortarray(df,colnum,colname1,colname2,gname):
     df.drop(columns=colnum, axis=1,inplace=True)
     df_1 = df[colname1].groupby(df[gname]).sum()
@@ -26,7 +26,7 @@ def standardarray(df_short):
     c = [list2,list3,list3]
     df_add=pd.DataFrame(c)
     df_add=df_add.T
-    df_add.rename(columns={0:'bin',1:'COUNT_ODflow',2:'trueintensity'},inplace=True)
+    df_add.rename(columns={0:'bin',1:'COUNT_ODflow',2:'ODflow_int'},inplace=True)
     df_st=pd.concat([df_short, df_add], ignore_index=True)
     df_st.sort_values('bin',inplace=True)
     return(df_st)
@@ -135,7 +135,7 @@ if __name__ == '__main__':
         cname = cfile.split('_')[1]
         cpath = os.path.join(pathp,cname)
         df = pd.read_csv(cfile, header=0)        
-        df_sum = shortarray(df,'OID_','COUNT_ODflow','trueintensity','bin')
+        df_sum = shortarray(df,'OID_','COUNT_ODflow','ODflow_int','bin')
         df_st = standardarray(df_sum)
         #print(df_st)
         #df_st.to_csv(cpath,index = None,encoding = 'utf_8_sig')
@@ -143,8 +143,8 @@ if __name__ == '__main__':
         
         #Calculate the symbolic eccentricity and force(information entropy) of each city
         cityname = cname.strip('.csv')
-        pxd_list = spatial_pianxindu(df_st['trueintensity']) 
-        entropy_length = entropy_len(df_st['trueintensity'])
+        pxd_list = spatial_pianxindu(df_st['ODflow_int']) 
+        entropy_length = entropy_len(df_st['ODflow_int'])
         #分列存入列表
         list_cityname.append(cityname)
         list_entropy.append(entropy_length)
@@ -154,11 +154,11 @@ if __name__ == '__main__':
         # list_pxd3.append(ppxd_list[0])
         # list_pxd4.append(ppxd_list[1])
         # list_pxd5.append(ppxd_list[2])
-        # print(gravity_points(df_st['trueintensity']) )
+        # print(gravity_points(df_st['ODflow_int']) )
     #result = pd.DataFrame({'cityname':list_cityname,'entropy':list_entropy,'bocchangbi':list_bcb,'scenterx':list_pxd0,'scentery':list_pxd1,'spianxindu':list_pxd2,'gcenterx':list_pxd3,'gcentery':list_pxd4,'gpianxindu':list_pxd5})
     result = pd.DataFrame({'cityname':list_cityname,'entropy':list_entropy,'bocchangbi':list_bcb,'scenterx':list_pxd0,'scentery':list_pxd1,'spianxindu':list_pxd2})
     result.to_csv('...\OputResult\result_cities.csv',index = None,encoding = 'utf_8_sig')#Output the calculation results of all cities
-        # array_df=df_st[['trueintensity']].to_numpy()
+        # array_df=df_st[['ODflow_int']].to_numpy()
         # print(df_sum,df_st)
 
 
