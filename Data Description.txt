@@ -1,0 +1,3 @@
+Data Description:
+In restaurantname.csv,OID_,name,purename correspond to the fields of POI ID, located city, and restaurantname, respectively.
+In symbolicflows.csv, ODflow_len, ODflow_azi, ODflow_int correspond to the fields of length, azimuth angle, and intensity, respectively.
