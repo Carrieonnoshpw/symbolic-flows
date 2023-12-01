@@ -4,7 +4,7 @@ import cpca
 import pandas as pd
 
 ##f is the total table of restaurant POIs
-f=pd.read_csv('...\zcpoi_name.csv', header=0)
+f=pd.read_csv('...\restaurantname.csv', header=0)
 listf = f['purename'].tolist()
 loc = cpca.transform(listf)
 loc = loc.drop(['省','市','区','地址'],axis=1)
