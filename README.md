@@ -2,7 +2,7 @@
 Data:    
     Data Description: the information about data
     restaurantname.7z: the raw data 
-    Symbolicflows.csv：the processed data 
+    Symbolicflows.csv：the constructed symbolic flow data 
     
 CitySymbolExtractor.py: Identify place symbols from restaurant names and match the identified place symbols to prefecture-level cities
 EntropyandEccentricity.py: Calculate the symbolic force and eccentricity (with gravity center) for all cities based on symbolic flows
